@@ -15,11 +15,30 @@ extension UIView {
     
     func blur(radius: CGFloat) {
         unBlur()
-        let filteredImage = blueImage(radius: radius)
+        guard let image = generateImage(),
+            let ciImage = CIImage(image: image),
+            let filter = CIFilter(name: "CIGaussianBlur") else {
+            return
+        }
+        // Get Gaussian Blur image from image get from view
+        filter.setValue(ciImage, forKey: kCIInputImageKey)
+        filter.setValue(radius, forKey: kCIInputRadiusKey)
+        guard let outputImage = filter.value(forKey: kCIOutputImageKey) as? CIImage else { return }
+        let context = CIContext(options: nil)
+        guard let cgimg = context.createCGImage(outputImage, from: outputImage.extent) else { return }
+        let filteredImage = UIImage(cgImage: cgimg)
+        
+        /**
+        ** Because the TriagleView is draw in Core Graphics, so I can't use the normal method for display blur view.
+        ** Because Core graphics is overlapped the subviews
+        ** so I create new overlay view and present it
+        **/
+        let boundingRect = outputImage.extent
         let blurView = UIImageView(image: filteredImage)
-        blurView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
-        blurView.frame.origin = frame.origin
-        blurView.contentMode = .scaleAspectFill
+        blurView.frame = boundingRect
+        blurView.contentMode = .scaleAspectFit
+        blurView.clipsToBounds = false
+        blurView.center = self.center
         UIView.transition(from: self,
                           to: blurView,
                           duration: 0.2,
@@ -37,7 +56,7 @@ extension UIView {
         // Set Blur filter image from image get from view
         filter.setValue(ciImage, forKey: kCIInputImageKey)
         filter.setValue(radius, forKey: kCIInputRadiusKey)
-        guard let outputImage = filter.outputImage else { return nil }
+        guard let outputImage = filter.value(forKey: kCIOutputImageKey) as? CIImage else { return nil }
         let context = CIContext(options: nil)
         guard let cgimg = context.createCGImage(outputImage, from: outputImage.extent) else { return nil }
         return UIImage(cgImage: cgimg)
@@ -54,6 +73,8 @@ extension UIView {
         return nil
     }
     
+    
+    /// Remove previous the blur view
     private func unBlur() {
         if let blurView = self.blurView {
             UIView.transition(from: blurView,
@@ -65,6 +86,8 @@ extension UIView {
         }
     }
     
+    
+    /// Using Objective-C Runtime for store the blur view
     private var blurView: UIImageView? {
         get {
             return objc_getAssociatedObject(self, &AssociatedKeys.blurView) as? UIImageView
