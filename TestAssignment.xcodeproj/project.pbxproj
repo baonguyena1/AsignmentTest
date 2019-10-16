@@ -16,6 +16,7 @@
 		9B64F40D2356BEE000FD2837 /* TestAssignmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B64F40C2356BEE000FD2837 /* TestAssignmentUITests.swift */; };
 		9B64F41B2356C28200FD2837 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B64F41A2356C28200FD2837 /* SceneDelegate.swift */; };
 		9B64F4202356C3E000FD2837 /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B64F41F2356C3E000FD2837 /* TriangleView.swift */; };
+		9B866E542356D7FD0034BD90 /* UIView+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B866E532356D7FD0034BD90 /* UIView+Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		9B64F40E2356BEE000FD2837 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B64F41A2356C28200FD2837 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9B64F41F2356C3E000FD2837 /* TriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
+		9B866E532356D7FD0034BD90 /* UIView+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helper.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		9B64F3E92356BEDF00FD2837 /* TestAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				9B866E502356D76F0034BD90 /* Utilities */,
 				9B64F41C2356C39A00FD2837 /* Views */,
 				9B64F3EA2356BEDF00FD2837 /* AppDelegate.swift */,
 				9B64F3EE2356BEDF00FD2837 /* ViewController.swift */,
@@ -137,6 +140,14 @@
 				9B64F41F2356C3E000FD2837 /* TriangleView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		9B866E502356D76F0034BD90 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9B866E532356D7FD0034BD90 /* UIView+Helper.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,6 +285,7 @@
 				9B64F3EB2356BEDF00FD2837 /* AppDelegate.swift in Sources */,
 				9B64F4202356C3E000FD2837 /* TriangleView.swift in Sources */,
 				9B64F41B2356C28200FD2837 /* SceneDelegate.swift in Sources */,
+				9B866E542356D7FD0034BD90 /* UIView+Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

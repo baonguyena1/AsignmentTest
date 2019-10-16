@@ -46,6 +46,12 @@ class ViewController: UIViewController {
         configureLogo()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        redTriagle.blur(radius: 40)
+        greenTriagle.blur(radius: 40)
+    }
+    
     private func configureLogo() {
         view.addSubview(swiftLogo)
         swiftLogo.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
